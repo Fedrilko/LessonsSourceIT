@@ -2,11 +2,13 @@ package com.sourceit.fredor.lessons.les5;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+
 
 
 
@@ -36,7 +38,16 @@ public class Classwork {
 		String[] arr = str.split(" ");
 //		Arrays.sort(arr, comparator);
 //		Arrays.sort(arr, (str1, str2) -> str2.length() - str1.length());
+
 //		System.out.println(Arrays.toString(arr));
+
+//		Arrays.sort(arr, (str1, str2) -> str1.length()-str2.length());
+//		System.out.println(Arrays.toString(arr));
+		
+		Stream stream = Arrays.stream(arr);
+
+	}
+
 	
 		Stream<String> stream = Arrays.stream(arr);
 		List<String> list = new ArrayList<>();
