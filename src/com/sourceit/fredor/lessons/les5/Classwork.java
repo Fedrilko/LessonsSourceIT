@@ -1,7 +1,11 @@
 package com.sourceit.fredor.lessons.les5;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Classwork {
 
@@ -27,11 +31,12 @@ public class Classwork {
 		String str = "sds fgfdg asdds fgdfgfdgdf sdfdsffifoi f ff Ff";
 		String[] arr =  str.split(" ");
 //		Arrays.sort(arr, (str1, str2) -> str2.length() - str1.length());
-		Arrays.sort(arr, (str1, str2) -> 0);
-		System.out.println(Arrays.toString(arr));
-				
-	}
+//		Arrays.sort(arr, (str1, str2) -> str1.length()-str2.length());
+//		System.out.println(Arrays.toString(arr));
+		
+		Stream stream = Arrays.stream(arr);
 
+	}
 	
 }
 
