@@ -44,11 +44,9 @@ public class Classwork {
 //		Arrays.sort(arr, (str1, str2) -> str1.length()-str2.length());
 //		System.out.println(Arrays.toString(arr));
 		
-		Stream stream = Arrays.stream(arr);
 
-	}
 
-	
+		
 		Stream<String> stream = Arrays.stream(arr);
 		List<String> list = new ArrayList<>();
 		
@@ -83,6 +81,9 @@ public class Classwork {
 //			num = num * 2;
 //			System.out.println(num);
 //		});
+		
+
 	}
 
 }
+
