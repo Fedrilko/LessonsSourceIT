@@ -15,16 +15,10 @@ public class Engine {
 		return volume;
 	}
 
-	public void setVolume(double volume) {
-		this.volume = volume;
-	}
 
 	public EngineType getEngineType() {
 		return engineType;
 	}
 
-	public void setEngineType(EngineType engineType) {
-		this.engineType = engineType;
-	}
 	
 }
