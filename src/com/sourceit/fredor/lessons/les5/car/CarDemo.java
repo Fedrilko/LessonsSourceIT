@@ -4,10 +4,21 @@ public class CarDemo {
 
 	public static void main(String[] args) {
 		
-		Car car = new Car(new Engine(), new Wheel[4], "DeLorean DMC-12", 50, 10);
+		Wheel[] wheels = new Wheel[4];
+		for (Wheel wheel : wheels) {
+			wheel =  new Wheel(16, "Toyo");
+		}
 		
-		car.ride(15);
-		car.ride(35);
+		Car car = new Car(new Engine(3.0,EngineType.GASOLINE), wheels, "DeLorean DMC-12", 50, 10);
+		
+		car.printMark();
+		car.ride(390);
+		car.ride(100);
+		car.refill();
+		car.ride(175);
+		car.refill();
+		car.replaceWheel();
+
 	}
 
 }
