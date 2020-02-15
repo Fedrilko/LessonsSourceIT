@@ -58,8 +58,8 @@ public class Classwork {
 		});
 //		
 		
-//		String[] newArr = stream.filter(item -> item.length()>3).toArray(String[]::new);
-//		System.out.println(Arrays.toString(newArr));
+		String[] newArr = stream.filter(item -> item.length()>3).toArray(String[]::new);
+		System.out.println(Arrays.toString(newArr));
 		
 //		stream.forEach((element)-> {
 //			if(element.length()>4) System.out.println(element);
