@@ -1,17 +1,17 @@
 package com.sourceit.fredor.lessons.les6.gift;
 
 public enum PackagingTypes {
-	BOX, BAG, BUCKET;
-
-	public static double getPrice(PackagingTypes type) {
-		
-		switch(type) {
-		case BOX: return 12.0;
-		case BAG: return 5.0;
-		case BUCKET: return 70;
-		default: return 0;
-		    
-		}
-
+	BOX(12.50), BAG(5.20), BUCKET(70);
+	
+	private double price;
+	
+	private PackagingTypes(double price) {
+		this.price = price;
 	}
+
+	public double getPrice() {
+		return price;
+	}
+	
+
 }

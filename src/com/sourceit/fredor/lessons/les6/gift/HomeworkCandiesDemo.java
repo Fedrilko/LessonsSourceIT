@@ -1,18 +1,44 @@
 package com.sourceit.fredor.lessons.les6.gift;
 
 import java.util.Date;
+import java.util.Scanner;
 
 import com.sourceit.fredor.lessons.les6.gift.candies.ManufactDateGenerator;
 import com.sourceit.fredor.lessons.les6.gift.candies.MarsCandy;
 
 public class HomeworkCandiesDemo {
 
-	public static void main(String[] args) {
 
+
+	public static void main(String[] args) {
 		
-		MarsCandy candy1 = new MarsCandy(new Date(ManufactDateGenerator.generateDate()));
-		System.out.println(candy1.toString());
-		System.out.println(candy1.getDateOfManufacturing());
+		Gift gift = new Gift(PackagingTypes.BUCKET);
+		Scanner sc = new Scanner(System.in);
+		
+		//Compose selection menu
+		System.out.println("Select candies to put in the gift:\n(just input number and hit Enter)");
+		System.out.println("  1. Put Snickers");
+		System.out.println("  2. Put Mars");
+		System.out.println("  3. Put Bounty");
+		System.out.println("  4. Put Twiks");
+		System.out.println("  5. Put Chupa Chups");
+		System.out.println("  0. Finish packaging");
+		
+		
+		do {
+			int selectedNum = sc.nextInt();
+			if(selectedNum<0 || selectedNum>5) {
+				System.out.println("Entered number is not suitable. Enter a number again.");
+				continue;
+			}
+			
+			
+		} while(true);
+		
+		
+//		MarsCandy candy1 = new MarsCandy(new Date(ManufactDateGenerator.generateDate()));
+//		System.out.println(candy1.toString());
+//		System.out.println(candy1.getDateOfManufacturing());
 		
 //		List<Candy> listOfCandies = new ArrayList<Candy>();
 //		Candy candy1 = new  MarsCandy(new Date(2019-1900, 10, 15));
@@ -40,8 +66,9 @@ public class HomeworkCandiesDemo {
 //		System.out.println(listOfCandies.get(1).getType());
 //		System.out.println(listOfCandies.get(2).getType());
 //		System.out.println(listOfCandies.get(3).getType());
-
 		
 	}
+	
+	
 
 }

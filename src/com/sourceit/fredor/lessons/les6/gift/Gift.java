@@ -35,7 +35,7 @@ public class Gift {
 		listOfCandies.forEach(obj -> {
 			price=+obj.getPrice();
 		});
-		return price + PackagingTypes.getPrice(typeOfpackaging);
+		return price + typeOfpackaging.getPrice();
 	}
 	
 	
