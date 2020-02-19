@@ -27,7 +27,7 @@ public abstract class Candy extends Sweetness implements Comparable<Candy> {
 	
 	@Override
 	public String toString() {		
-		return (getName() + ", weight: " + getWeight() + " g, sugar level: " + getSugarLevel()*100 + "%, price: " + getPrice() + " UAH, kind: " + type + ".");
+		return (getName() + ", weight: " + getWeight() + " g, sugar level: " + ("" + getSugarLevel()*100).substring(0, 4) + "%, price: " + getPrice() + " UAH, kind: " + type + ".");
 	}
 	
 		
