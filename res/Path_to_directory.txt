@@ -1,2 +1,3 @@
-G:\JavaProjects\sourceit\src
+C:\Users\Fredor\Desktop\Test
+D:\Java Projects\LessonsSourceIT\src
 C:\Users\hodko-f\Desktop\Test
