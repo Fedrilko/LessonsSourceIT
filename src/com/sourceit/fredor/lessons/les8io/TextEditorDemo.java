@@ -10,24 +10,19 @@ public class TextEditorDemo {
 
 	public static void main(String[] args) throws IOException {
 
-		File dir = new File("D:\\Java Projects\\LessonsSourceIT");
-		Path path = Paths.get(dir.getPath());
-		System.out.println(path.getFileName().toString());
+		TextEditor editor = new TextEditor();		
+		editor.writeToFile();
+//		String str;
+//		try {
+//			str = editor.getFileContent();
+//			editor.printFileStatistic(str);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
-		File[] array = dir.listFiles((fileObj, fileName) -> fileName.endsWith("gitignore"));
-		System.out.println(array.length);
-		for (File file : array) {
-			System.out.println(file.getAbsolutePath());
-		}
+//		String s = editor.getFileContent();		
+//		System.out.println(editor.getQtyOfWords(s));
 		
-		Files.walk(path, 7)
-				.filter(pathObj -> pathObj.getFileName().toString().endsWith("java"))
-				.forEach(pathObj -> System.out.println(pathObj.getFileName().toString()));
-
-		Files.find(path, 3, (pathObj, fileAttribute) -> {
-			
-			return true;
-		});
 	}
 
 }
