@@ -11,19 +11,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-//Class functionality: 
+
 
 public class TextEditor {
 	
 	private Path path = Paths.get("res\\hw8\\default_file.txt");	
 
 	public String getFileContent() throws IOException {
-		List<String> content = Files.readAllLines(path);
-		
-//		for (String string : content) {
-//			
-//			sb.append(string + "\n");
-//		}
+		List<String> content = Files.readAllLines(path);		
 		return getStingFromList(content);
 	}
 	
@@ -93,18 +88,6 @@ public class TextEditor {
 			return -1;
 		return qtyOfVowelsPerLine.indexOf(maxVal) + 1;
 		
-//		text.lines().forEach(line -> {
-//		int qtyOfVowels =0 ;
-//		for (char sym : line.toLowerCase().toCharArray()) {
-//			for (char vowelSym : vowelLetters) {
-//				if(sym == vowelSym) {
-//					qtyOfVowels++;
-//					break;
-//				}
-//			}				
-//		}
-//		list.add(qtyOfVowels);
-//	});
 	}
 	
 	

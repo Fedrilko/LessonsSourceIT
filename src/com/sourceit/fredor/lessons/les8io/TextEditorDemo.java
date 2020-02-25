@@ -1,6 +1,5 @@
 package com.sourceit.fredor.lessons.les8io;
 
-
 import java.io.IOException;
 
 public class TextEditorDemo {
@@ -9,8 +8,6 @@ public class TextEditorDemo {
 
 		TextEditor editor = new TextEditor();	
 		System.out.println("WELCOME TO OUR BRAND NEW NOTEPAD FOR DOUCHEBAGS!\n(Type \"exit\" on the new line to finish input).");
-		
-
 		String str;
 		try {
 			editor.writeToFile();
