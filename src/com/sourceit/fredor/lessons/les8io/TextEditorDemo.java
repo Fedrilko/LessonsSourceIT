@@ -1,28 +1,28 @@
 package com.sourceit.fredor.lessons.les8io;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class TextEditorDemo {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args)  {
 
-		TextEditor editor = new TextEditor();		
-		editor.writeToFile();
-//		String str;
-//		try {
-//			str = editor.getFileContent();
-//			editor.printFileStatistic(str);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		TextEditor editor = new TextEditor();	
+		System.out.println("WELCOME TO OUR BRAND NEW NOTEPAD FOR DOUCHEBAGS!\n(Type \"exit\" on the new line to finish input).");
 		
-//		String s = editor.getFileContent();		
-//		System.out.println(editor.getQtyOfWords(s));
-		
+
+		String str;
+		try {
+			editor.writeToFile();
+			str = editor.getFileContent();
+			if (!editor.getFileContent().isEmpty())
+				editor.printFileStatistic(str);
+			else System.out.println("File is empty.");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			
 	}
 
 }

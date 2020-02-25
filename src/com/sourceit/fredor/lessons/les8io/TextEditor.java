@@ -19,34 +19,38 @@ public class TextEditor {
 
 	public String getFileContent() throws IOException {
 		List<String> content = Files.readAllLines(path);
-		StringBuilder sb = new StringBuilder();
-		for (String string : content) {
-			sb.append(string + "\n");
-		}
-		return sb.toString();
+		
+//		for (String string : content) {
+//			
+//			sb.append(string + "\n");
+//		}
+		return getStingFromList(content);
 	}
 	
 	public void writeToFile() throws IOException {
 		Scanner sc = new Scanner(System.in);
-		StringBuilder sb = new StringBuilder();
-
+		List<String> list = new ArrayList<>();
+		
 		while(true) {
 			String str = sc.nextLine();
 			if (str.equals("exit")) 
 				break;
 			if (str.equals("clear")) {
-				sb = new StringBuilder("");
+				list = null;
 				break;
 			}
-			sb.append(str + "\n");
+			list.add(str);
 		}
 		
-		if (sb.toString().equals(""))
-			Files.write(path, sb.toString().getBytes());
-		else
-			Files.write(path, sb.toString().getBytes(), StandardOpenOption.APPEND);
+		if (list == null) {
+			Files.write(path, "".getBytes());
+		} else if (list.size() != 0) {
+			if (getFileContent().isEmpty()) {
+				Files.write(path, (getStingFromList(list)).getBytes());
+			} else
+				Files.write(path, ("\n" + getStingFromList(list)).getBytes(), StandardOpenOption.APPEND);
+		}
 		sc.close();
-		
 	}
 	
 	public int getQtyOfSymbols(String text) {
@@ -65,7 +69,7 @@ public class TextEditor {
 	}
 	
 	public int getMaxVowelLineNumber (String text) {
-		if (text == null) 
+		if (text == null || text.isEmpty()) 
 			return -1;
 		char[] vowelLetters = {'a', 'e', 'i', 'o', 'u'};
 		List<String> lines = text.lines().collect(Collectors.toList());
@@ -110,9 +114,9 @@ public class TextEditor {
 			return 0;
 		int qtyOfWords = 0;
 		String[] arr = text.split("\n");
-		for (String string : arr) {
-			for (String str : string.split(" ")) {
-				if (!string.isBlank())
+		for (String line : arr) {
+			for (String word : line.split(" ")) {
+				if (!line.isBlank())
 					qtyOfWords++;
 			}
 		}
@@ -130,6 +134,17 @@ public class TextEditor {
 		System.out.print("Quantiry of words: ");
 		System.out.println(getQtyOfWords(getFileContent()));
 		
+	}
+	
+	private String getStingFromList(List<String> list) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < list.size(); i++) {
+			if (i == list.size() - 1)
+				sb.append(list.get(i));
+			else
+				sb.append(list.get(i) + "\n");
+		}
+		return sb.toString();
 	}
 	
 }
