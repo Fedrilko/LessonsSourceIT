@@ -25,21 +25,20 @@ public class TextEditor {
 	public void writeToFile() throws IOException {
 		Scanner sc = new Scanner(System.in);
 		List<String> list = new ArrayList<>();
-		
-		while(true) {
-			String str = sc.nextLine();
-			if (str.equals("exit")) 
+		String str;
+		while (true) {
+			str = sc.nextLine();
+			if (str.equals("exit"))
 				break;
 			if (str.equals("clear")) {
-				list = null;
 				break;
 			}
 			list.add(str);
 		}
-		
-		if (list == null) {
+
+		if (str.equals("clear")) {
 			Files.write(path, "".getBytes());
-		} else if (list.size() != 0) {
+		} else if (!str.equals("exit")) {
 			if (getFileContent().isEmpty()) {
 				Files.write(path, (getStingFromList(list)).getBytes());
 			} else
@@ -102,8 +101,7 @@ public class TextEditor {
 				if (!line.isBlank())
 					qtyOfWords++;
 			}
-		}
-		
+		}		
 		return qtyOfWords;
 	}
 		

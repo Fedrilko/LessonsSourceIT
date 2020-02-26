@@ -17,7 +17,7 @@ public class TextEditorDemo {
 			else System.out.println("File is empty.");
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("File is not exist.");;
 		}
 			
 	}
