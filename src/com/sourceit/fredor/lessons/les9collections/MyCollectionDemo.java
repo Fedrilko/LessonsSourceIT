@@ -1,6 +1,7 @@
 package com.sourceit.fredor.lessons.les9collections;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class MyCollectionDemo {
 	public static void main(String[] args) {
@@ -31,7 +32,21 @@ public class MyCollectionDemo {
 		
 		list2.remove(1);
 		System.out.println(Arrays.toString(list2.toArray()));
-		list2.clear();
+//		list2.clear();
+		
+		Iterator<Object> it1 = list1.iterator();
+		it1.next();
+		it1.remove();
+		System.out.println(list1.toString());
+		
+		Iterator<Object> it2 = list2.iterator();
+		while(it2.hasNext()) {
+			System.out.println(it2.next());
+		}
+		
+		for (Object object : list2) {
+			System.out.println(it2.next());
+		}
 		
 	}
 
