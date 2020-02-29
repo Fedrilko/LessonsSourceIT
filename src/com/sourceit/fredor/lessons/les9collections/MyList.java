@@ -16,6 +16,6 @@ public interface MyList {
 
 	boolean containsAll(MyList c);
 	
-	Object get(int index);
+//	Object get(int index);
 
 }

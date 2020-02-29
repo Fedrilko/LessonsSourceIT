@@ -9,39 +9,6 @@ public class DefaultMyList implements MyList {
 	private Object[] array = new Object[10];
 	private int size; // represents qty of objects in array
 
-	public static void main(String[] args) {
-		DefaultMyList list = new DefaultMyList();
-		
-		String str1 = new String("Dima");
-		String str2 = new String("Anna");
-		String str3 = new String("Fedor");
-		
-		list.add(str1);
-		list.add(str2);
-		list.add(str3);
-
-		
-		DefaultMyList list1 = new DefaultMyList();
-
-//		list1.add("ds");
-
-		list1.add(str3);		
-		list1.add(str1);
-		list1.add(str2);
-//		list1.add("ds");
-
-		
-//		System.out.println(list.size());
-//		System.out.println(list1.size());
-//		
-		System.out.println(list.containsAll(list1));
-//		System.out.println(list1.get(0));
-//		System.out.println(list1.get(1));
-//		System.out.println(list1.get(2));
-
-
-	}
-
 	@Override
 	public void add(Object e) {
 		if (size == array.length) {
@@ -67,6 +34,16 @@ public class DefaultMyList implements MyList {
 
 	@Override
 	public boolean remove(Object o) {
+		for (int i = 0; i < size; i++) {
+			if (array[i] == o) {
+				if (i == size - 1)
+					array[i] = null;
+				else
+					array = squeezeArray(i);
+				size--;
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -82,30 +59,41 @@ public class DefaultMyList implements MyList {
 
 	@Override
 	public boolean contains(Object o) {
-		for(int i = 0; i < size; i++) {
-			if (array[i] == o)
+		for (int i = 0; i < size; i++) {
+			if (array[i] == o) {
+				
 				return true;
+			}
+				
 		}
 		return false;
 	}
 
 	@Override
 	public boolean containsAll(MyList c) {
-		
-		boolean flag = false;
-		
-		for(int i = 0; i < c.size(); i++) {
-			
-			if (i > 0 && flag == false)
-				return false;
-			for(int j = 0; j < size; j++ ) {
-				if(c.get(i) == array[j]) {
-					flag = true;
-					continue;
-				} else flag = false;
+		int counter = 0;
+		Object[] arr = c.toArray();
+		for (int i = 0; i < c.size(); i++) {
+			for (int j = 0; j < size; j++) {
+				if (arr[i] == array[j]) {
+					counter++;
+				}
+
 			}
 		}
-		return true;
+		if (counter == c.size()) return true;
+		return false;
+	}
+	
+	private Object[] squeezeArray(int index) {
+		Object[] newArray = new Object[array.length];
+		for (int i = 0; i < index; i++) {
+			newArray[i] = array[i];
+		}
+		for (int i = index; i < size; i++) {
+			newArray[i] = array[i + 1];
+		}
+		return newArray;
 	}
 
 	@Override
@@ -125,11 +113,11 @@ public class DefaultMyList implements MyList {
 		}
 		return "{" + sb.toString() + "}";
 	}
-	
-	@Override
-	public Object get(int index) {
+
+//	@Override
+//	public Object get(int index) {
 //		if (index >= size) return null;
-		return array[index];
-	}
+//		return array[index];
+//	}
 
 }
