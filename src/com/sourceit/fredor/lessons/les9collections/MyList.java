@@ -1,6 +1,6 @@
 package com.sourceit.fredor.lessons.les9collections;
 
-public interface MyList {
+public interface MyList extends Iterable<Object> {
 
 	void add(Object e);
 

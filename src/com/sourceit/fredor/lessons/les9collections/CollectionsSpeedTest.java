@@ -9,36 +9,19 @@ public class CollectionsSpeedTest {
 
 	public static void main(String[] args) {
 		
-		List<String> alHundred = new ArrayList<>();	
-		List<String> alTenThousands = new ArrayList<>();	
-		List<String> alMillion = new ArrayList<>();	
-		
-		List<String> llHundred = new LinkedList<>();	
-		List<String> llTenThousands = new LinkedList<>();	
-		List<String> llMillion = new LinkedList<>();
-		
-		fillList(alHundred, 100);
-		fillList(alTenThousands, 10000);
-		fillList(alMillion, 1000000);
-		
-		fillList(llHundred, 100);
-		fillList(llTenThousands, 10000);
-		fillList(llMillion, 1000000);
+		List<String> al = new ArrayList<>();	
+		List<String> ll = new LinkedList<>();	
+		fillList(al, 1000000);
+		fillList(ll, 1000000);
+	
 		
 		System.out.println("Timings format: [begin, middle, end]");
-		System.out.println("Array lists:");
-		printStatistic(alHundred);
-		printStatistic(alTenThousands);
-		printStatistic(alMillion);
+		System.out.println("Array list:");
+		printStatistic(al);
 		
-		System.out.println("Linked lists:");
-		printStatistic(llHundred);
-		printStatistic(llTenThousands);
-		printStatistic(llMillion);
+		System.out.println("Linked list:");
+		printStatistic(ll);
 		
-//		System.out.println(System.currentTimeMillis());
-//		alMillion.add(500000,"Hello");
-//		System.out.println(System.currentTimeMillis());
 	}
 	
 	public static List<String> fillList(List<String> list, int size) {
@@ -49,30 +32,39 @@ public class CollectionsSpeedTest {
 		return list;
 	}
 	
-	public static long[] getAdditionTimings(List<String> list) {	
-		return new long[] {add(list, 0), add(list, list.size()/2), add(list, list.size())};
+	public static long[] getAdditionTimings(List<String> list, int qty) {	
+		return new long[] {add(list, 0, qty), add(list, list.size()/2, qty), add(list, list.size(), qty)};
 	}
 	
-	public static long add(List<String> list, int index) {
+	public static long add(List<String> list, int index, int qty) {
 		long milliSec = System.currentTimeMillis();
-		list.add(index, "Hello");
+		for (int i = 0; i < qty; i++) {
+			list.add(index, "Hello");
+		}		
 		long delta = System.currentTimeMillis() - milliSec;
 		return delta;
 	}
 	
-	public static long[] getRemovalTimings(List<String> list) {	
-		return new long[] {remove(list, 0), remove(list, list.size()/2), remove(list, list.size()-1)};
+	public static long[] getRemovalTimings(List<String> list, int qty) {	
+			return new long[] {remove(list, 0, qty), remove(list, list.size()/2, qty), remove(list, list.size()-1, qty)};
 	}
 	
-	public static long remove(List<String> list, int index) {
+	public static long remove(List<String> list, int index, int qty) {
+		
 		long milliSec = System.currentTimeMillis();
-		list.remove(index);
+		for (int i = 0; i < qty; i++) {
+			list.remove(index);
+		}
 		long delta = System.currentTimeMillis() - milliSec;
 		return delta;
 	}
 
 	public static void printStatistic(List<String> list) {
-		System.out.println("Addition timings for " + list.size() + " elements list: " + Arrays.toString(getAdditionTimings(list)));
-		System.out.println("Removal timings for " + (list.size() - 3) + " list: " + Arrays.toString(getRemovalTimings(list)));
+		System.out.println("Addition timings for 100 elements: " + Arrays.toString(getAdditionTimings(list, 100)));
+		System.out.println("Addition timings for 10000 elements: " + Arrays.toString(getAdditionTimings(list, 10000)));
+		System.out.println("Addition timings for 1000000 elements: " + Arrays.toString(getAdditionTimings(list, 1000000)));
+		System.out.println("Removal timings for 100 elements: " + Arrays.toString(getRemovalTimings(list, 100)));
+		System.out.println("Removal timings for 10000 elements: " + Arrays.toString(getRemovalTimings(list, 10000)));
+		System.out.println("Removal timings for 1000000 elements: " + Arrays.toString(getRemovalTimings(list, 1000000)));
 	}
 }
