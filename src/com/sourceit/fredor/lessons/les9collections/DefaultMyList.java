@@ -5,9 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import com.sourceit.fredor.lessons.les10CollsAndConcur.*;
 
-import com.sourceit.fredor.lessons.les10CollsAndConcur.ListIterable;
-
-public class DefaultMyList implements MyList {
+public class DefaultMyList implements MyList, ListIterable {
 
 	private Object[] array = new Object[10];
 	private int size; // represents qty of objects in array
@@ -121,6 +119,12 @@ public class DefaultMyList implements MyList {
 		return new IteratorImpl();
 	}
 	
+	@Override
+	public MyListIterator listIterator() {
+		return new ListIteratorImpl();
+	}
+	
+	
 	
 	private class IteratorImpl implements Iterator<Object>{
 		
@@ -130,8 +134,7 @@ public class DefaultMyList implements MyList {
 		
 		@Override
 		public boolean hasNext() {
-			if (iteratorPosition == size) return false;			
-			return true;
+			return iteratorPosition != size;
 		}
 
 		@Override
@@ -139,8 +142,10 @@ public class DefaultMyList implements MyList {
 			if (iteratorPosition == size) {
 				throw new NoSuchElementException();
 			}
+			
+//			System.out.println("next() Iterator position - " + iteratorPosition);
 			hasElementToRemove = true;
-			return array[iteratorPosition++];
+			return array[iteratorPosition++]; 
 		}
 		
 		public void remove() {
@@ -152,14 +157,9 @@ public class DefaultMyList implements MyList {
 			hasElementToRemove = false;
 			
 		}
-	}
-	
+	}	
 
-	private class ListIteratorImpls extends IteratorImpl implements MyListIterator {
-		
-		int iteratorPosition = 0;
-		boolean hasElementToRemove = false;
-		
+	private class ListIteratorImpl extends IteratorImpl implements MyListIterator {
 		
 		@Override
 		public boolean hasPrevious() {
@@ -171,17 +171,33 @@ public class DefaultMyList implements MyList {
 		public Object previous() {
 			if (iteratorPosition == 0) {
 				throw new NoSuchElementException();
-			}						
+			}	
+//			System.out.println(" previous() Iterator position - " + iteratorPosition);
 			hasElementToRemove = true;
-			return array[iteratorPosition--];
+			return array[--iteratorPosition];
 		}
 
 		@Override
 		public void set(Object e) {
+			array[iteratorPosition] = e;
 			
 		}
+		
+//		@Override
+//		public void remove() {
+//			
+//			if (!hasElementToRemove) throw new IllegalStateException();
+//			array = squeezeArray(iteratorPosition - 1);
+//			iteratorPosition--;
+//			size--;
+//			hasElementToRemove = false;
+//			
+//		}
 
+		
 	}
+
+
 		
 }
 
