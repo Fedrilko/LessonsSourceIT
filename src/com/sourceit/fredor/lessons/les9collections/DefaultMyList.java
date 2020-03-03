@@ -1,12 +1,11 @@
 package com.sourceit.fredor.lessons.les9collections;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
-import java.util.Objects;
+import com.sourceit.fredor.lessons.les10CollsAndConcur.*;
+
+import com.sourceit.fredor.lessons.les10CollsAndConcur.ListIterable;
 
 public class DefaultMyList implements MyList {
 
@@ -119,74 +118,11 @@ public class DefaultMyList implements MyList {
 	
 	@Override
 	public Iterator<Object> iterator() {
-		return new IteratorMyImpl();
+		return new IteratorImpl();
 	}
 	
-
 	
-	
-///////////////////////////////borrowed methods////////////////////////////////////
-	
-//    public Object removeForIterator(int index) {
-//        Objects.checkIndex(index, size);
-//        final Object[] es = array;
-//
-//        Object oldValue = (Object) es[index];
-//        fastRemove(es, index);
-//
-//        return oldValue;
-//    }
-//    
-//    private void fastRemove(Object[] es, int i) {
-//        final int newSize;
-//        if ((newSize = size - 1) > i)
-//            System.arraycopy(es, i + 1, es, i, newSize - i);
-//        es[size = newSize] = null;
-//    }
-
-//	@Override
-//	public Object get(int index) {
-//		if (index >= size) return null;
-//		return array[index];
-//	}
-	
-	
-//	private class IteratorImpl implements Iterator<Object> {
-//		
-//	    int cursor;
-//        int lastRet = -1; 
-//       
-//        public boolean hasNext() {
-//            return cursor != size;
-//        }
-//
-//        public Object next() {
-//            
-//            int i = cursor;
-//            if (i >= size)
-//                throw new NoSuchElementException();
-//            Object[] elementData = DefaultMyList.this.array;
-//            if (i >= elementData.length)
-//                throw new ConcurrentModificationException();
-//            cursor = i + 1;
-//            return (Object) elementData[lastRet = i];
-//        }
-//
-//        public void remove() {
-//            if (lastRet < 0)
-//                throw new IllegalStateException();
-//
-//            try {
-//                DefaultMyList.this.removeForIterator(lastRet);
-//                cursor = lastRet;
-//                lastRet = -1;
-//            } catch (IndexOutOfBoundsException ex) {
-//                throw new ConcurrentModificationException();
-//            }
-//        }		
-//	}
-	
-	private class IteratorMyImpl implements Iterator<Object>{
+	private class IteratorImpl implements Iterator<Object>{
 		
 		int iteratorPosition = 0;
 		boolean hasElementToRemove = false;
@@ -207,7 +143,7 @@ public class DefaultMyList implements MyList {
 			return array[iteratorPosition++];
 		}
 		
-		public void remove() {			
+		public void remove() {
 			
 			if (!hasElementToRemove) throw new IllegalStateException();
 			array = squeezeArray(iteratorPosition - 1);
@@ -218,9 +154,34 @@ public class DefaultMyList implements MyList {
 		}
 	}
 	
-//	private class ListIteratorImpls extends IteratorMyImpl implements ListIterator {
-//
-//	}
+
+	private class ListIteratorImpls extends IteratorImpl implements MyListIterator {
+		
+		int iteratorPosition = 0;
+		boolean hasElementToRemove = false;
+		
+		
+		@Override
+		public boolean hasPrevious() {
+			if (iteratorPosition == 0) return false;			
+			return true;
+		}
+
+		@Override
+		public Object previous() {
+			if (iteratorPosition == 0) {
+				throw new NoSuchElementException();
+			}						
+			hasElementToRemove = true;
+			return array[iteratorPosition--];
+		}
+
+		@Override
+		public void set(Object e) {
+			
+		}
+
+	}
 		
 }
 

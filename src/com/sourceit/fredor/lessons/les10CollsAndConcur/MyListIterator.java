@@ -2,7 +2,7 @@ package com.sourceit.fredor.lessons.les10CollsAndConcur;
 
 import java.util.Iterator;
 
-interface ListIterator extends Iterator<Object> {
+public interface MyListIterator extends Iterator<Object> {
 
 	boolean hasPrevious();
 
@@ -11,4 +11,5 @@ interface ListIterator extends Iterator<Object> {
 	void set(Object e);
 
 	void remove();
+	
 }
