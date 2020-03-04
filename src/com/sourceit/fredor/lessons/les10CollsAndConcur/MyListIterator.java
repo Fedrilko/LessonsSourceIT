@@ -12,4 +12,8 @@ public interface MyListIterator extends Iterator<Object> {
 
 	void remove();
 	
+	public int getIteratorPosition();//DELETE!!!!!!
+	
+	public int getLastReturn();//DELETE!!!!!!
+	
 }

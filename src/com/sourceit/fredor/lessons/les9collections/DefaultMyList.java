@@ -57,6 +57,7 @@ public class DefaultMyList implements MyList, ListIterable {
 		return size;
 	}
 
+	
 	@Override
 	public boolean contains(Object o) {
 		for (int i = 0; i < size; i++) {
@@ -98,6 +99,7 @@ public class DefaultMyList implements MyList, ListIterable {
 
 	@Override
 	public String toString() {
+		if (size == 0) return "[]";
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 
@@ -129,8 +131,10 @@ public class DefaultMyList implements MyList, ListIterable {
 	private class IteratorImpl implements Iterator<Object>{
 		
 		int iteratorPosition = 0;
-		boolean hasElementToRemove = false;
+		int lastReturn = -1;
+//		boolean hasElementToRemove = false;
 		
+	
 		
 		@Override
 		public boolean hasNext() {
@@ -142,24 +146,33 @@ public class DefaultMyList implements MyList, ListIterable {
 			if (iteratorPosition == size) {
 				throw new NoSuchElementException();
 			}
-			
-//			System.out.println("next() Iterator position - " + iteratorPosition);
-			hasElementToRemove = true;
-			return array[iteratorPosition++]; 
+			iteratorPosition++;
+			lastReturn++;
+//			hasElementToRemove = true;
+			return array[lastReturn]; 
 		}
 		
 		public void remove() {
 			
-			if (!hasElementToRemove) throw new IllegalStateException();
-			array = squeezeArray(iteratorPosition - 1);
-			iteratorPosition--;
+			if (lastReturn == -1) throw new IllegalStateException();
+			array = squeezeArray(lastReturn);
+			iteratorPosition = lastReturn;
+			lastReturn = -1;
 			size--;
-			hasElementToRemove = false;
+//			hasElementToRemove = false;
 			
 		}
 	}	
 
 	private class ListIteratorImpl extends IteratorImpl implements MyListIterator {
+		
+		public int getIteratorPosition() {
+			return iteratorPosition;
+		}
+		
+		public int getLastReturn() {
+			return lastReturn;
+		}
 		
 		@Override
 		public boolean hasPrevious() {
@@ -172,9 +185,9 @@ public class DefaultMyList implements MyList, ListIterable {
 			if (iteratorPosition == 0) {
 				throw new NoSuchElementException();
 			}	
-//			System.out.println(" previous() Iterator position - " + iteratorPosition);
-			hasElementToRemove = true;
-			return array[--iteratorPosition];
+//			hasElementToRemove = true;
+			iteratorPosition--;
+			return array[lastReturn = iteratorPosition];
 		}
 
 		@Override
@@ -183,20 +196,8 @@ public class DefaultMyList implements MyList, ListIterable {
 			
 		}
 		
-//		@Override
-//		public void remove() {
-//			
-//			if (!hasElementToRemove) throw new IllegalStateException();
-//			array = squeezeArray(iteratorPosition - 1);
-//			iteratorPosition--;
-//			size--;
-//			hasElementToRemove = false;
-//			
-//		}
-
 		
 	}
-
 
 		
 }

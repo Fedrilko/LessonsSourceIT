@@ -7,11 +7,11 @@ public class MyCollectionDemo {
 	public static void main(String[] args) {
 
 		DefaultMyList list = new DefaultMyList();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(4);
-		list.add(5);
+		list.add(213);
+		list.add(345);
+		list.add(664);
+//		list.add(4);
+//		list.add(5);
 		
 		
 		MyListIterator it = list.listIterator();
@@ -20,11 +20,29 @@ public class MyCollectionDemo {
 			System.out.println(it.next());
 		}
 		
-		while(it.hasPrevious()) {
-		System.out.println(it.previous());
-	}
+		it.previous();
+		it.remove();
+		it.previous();
+		it.remove();
+		it.previous();
+		it.remove();
+		System.out.println(list);
+
+//		System.out.println(it.getLastReturn());
+//		it.previous();
+//		System.out.println(it.getLastReturn());
+
 		
-		System.out.println(String.format("Hello %.3f",1.5431));
+
+		
+
+		
+//		while (it.hasPrevious()) {
+//			System.out.println(it.previous());
+//		}
+		
+		
+//		System.out.println(String.format("Hello %.3f",1.5431));
 		
 //		System.out.println(it.next());
 //		System.out.println(it.next());
