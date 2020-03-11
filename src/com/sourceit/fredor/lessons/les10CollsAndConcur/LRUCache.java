@@ -8,7 +8,7 @@ public class LRUCache{
 
 	private int capacity;
 	private HashMap<Integer, Integer> table = new HashMap<>();
-	private List<Integer> buffer = new ArrayList<>();
+	private static List<Integer> buffer = new ArrayList<>();
 	
 	public LRUCache(int capacity) {
 		this.capacity = capacity;
@@ -24,7 +24,8 @@ public class LRUCache{
 		cache.put(4, 4);
 		System.out.println(cache.get(1));
 		System.out.println(cache.get(3));
-		System.out.println(cache.get(4));		
+		System.out.println(cache.get(4));	
+		
 	}
 	
 
@@ -33,7 +34,7 @@ public class LRUCache{
 		if (index == -1)
 			return index;
 		else { //If key already presented in buffer shift element to the beginning
-			buffer.add(0, index);
+			buffer.add(0, buffer.get(index));
 			buffer.remove(index + 1);
 		}
 		return table.get(key);
