@@ -1,0 +1,10 @@
+Insert queries:
+INSERT INTO tours (title, description, price, date_of_depature, duration) VALUES ('1000 and 1 night', 'Wonderful trip to Baghdad', 100, '2020-05-16', 1000);
+INSERT INTO users (first_name, last_name, date_of_birth, email, password) VALUES ('Vladimir', 'Putin', '1952-10-07', 'putin@kremlin.ru', '69');
+
+Update queries:
+update users set password = 'vova_69' where email = 'putin@kremlin.ru';
+
+Delete queries:
+
+Sort queries:
