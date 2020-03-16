@@ -24,8 +24,8 @@ public class LRUCache{
 		cache.put(4, 4);
 		System.out.println(cache.get(1));
 		System.out.println(cache.get(3));
-		System.out.println(cache.get(4));	
-		
+		System.out.println(cache.get(4));			
+	
 	}
 	
 
@@ -65,5 +65,12 @@ public class LRUCache{
 			if (buffer.get(i).equals(key)) return i;
 		}
 		return -1;
+	}
+	
+	public int remove(Integer key) {
+		Integer value = table.remove(key);
+		if (value == null) return -1;
+		buffer.remove(key);
+		return value;
 	}
 }
