@@ -16,39 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `flights`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `flights`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
+CREATE TABLE `flights` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `last_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `role_id` int NOT NULL,
-  `referrer` varchar(100) DEFAULT NULL,
-  `account` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`) /*!80000 INVISIBLE */,
-  KEY `role_idx` (`role_id`),
-  KEY `role_id_idx` (`role_id`),
-  CONSTRAINT `role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `flight_number` varchar(45) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `flights`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Fedor','Khodko','1989-10-16','fedirkhodko@gmail.com','1','+30689617169',1,NULL,NULL),(2,'Vladimir','Putin','1952-10-07','putin@kremlin.ru','vova_69','102',1,NULL,NULL),(3,'Ivan','Lykhosherst','1987-10-07','ivan@global.com','33','911',3,NULL,NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `flights` WRITE;
+/*!40000 ALTER TABLE `flights` DISABLE KEYS */;
+INSERT INTO `flights` VALUES (1,'WY5869','2020-05-17','12:00:00');
+/*!40000 ALTER TABLE `flights` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

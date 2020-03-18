@@ -27,11 +27,17 @@ CREATE TABLE `tours` (
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `country` varchar(45) NOT NULL,
-  `price` decimal(10,2) unsigned NOT NULL,
+  `price` double unsigned NOT NULL,
   `date_of_depature` date NOT NULL,
   `duration` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `hotel_id` int DEFAULT NULL,
+  `flight_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hotel_id_idx` (`hotel_id`),
+  KEY `hotel_id_idx1` (`flight_id`),
+  CONSTRAINT `flight_id` FOREIGN KEY (`flight_id`) REFERENCES `flights` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +46,7 @@ CREATE TABLE `tours` (
 
 LOCK TABLES `tours` WRITE;
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
-INSERT INTO `tours` VALUES (1,'1000 and 1 night','Wonderful trip to Baghdad','Iraq',100.00,'2020-05-16',1000),(2,'Sweet vacation','TBD','Thailand',1500.00,'2020-04-05',12);
+INSERT INTO `tours` VALUES (1,'1000 and 1 night','Wonderful trip to Baghdad','Iraq',100,'2020-05-16',1000,1,1),(2,'Sweet vacation','TBD','Thailand',1500,'2020-04-05',12,1,1),(3,'All inclusice','TBD','Turkey',800,'2020-12-15',10,1,1),(4,'All inclusive','TBD','Turkey',1050,'2020-04-17',8,1,1);
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-14 12:12:07
+-- Dump completed on 2020-03-18 18:52:44

@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
-  `total_price` decimal(10,2) unsigned NOT NULL,
+  `total_price` double unsigned NOT NULL,
   `order_status` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-14 12:12:07
+-- Dump completed on 2020-03-18 18:52:44
