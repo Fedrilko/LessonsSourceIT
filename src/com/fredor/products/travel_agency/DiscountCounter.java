@@ -1,7 +1,8 @@
-package com.fredor.products.TestProject;
+package com.fredor.products.travel_agency;
 
 public class DiscountCounter {
 
+	
 	public static double calculateDiscount(User user, Order order) {
 		if (order.getTours().size() > 1 && user.getToursQty() >= 10) {
 			return order.getTotalPrice() * 0.12;
