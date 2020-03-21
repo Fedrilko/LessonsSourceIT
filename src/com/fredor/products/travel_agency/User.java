@@ -23,16 +23,16 @@ public class User {
 	public User() {
 
 	}
-
-	public User(int id, String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
-			String password) {
-		this.id = id;
+ 
+	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
+			String password, Role role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
 
 	public int getId() {
