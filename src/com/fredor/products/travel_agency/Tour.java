@@ -1,4 +1,4 @@
-package com.fredor.products.TestProject;
+package com.fredor.products.travel_agency;
 
 import java.sql.Date;
 

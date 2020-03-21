@@ -1,4 +1,4 @@
-package com.fredor.products.TestProject;
+package com.fredor.products.travel_agency;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ public class DBConnector {
 	private static final String URL = "jdbc:mysql://localhost:3306/travel_agency";
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
-	
+
 	private Connection connection;
 
 	public DBConnector() {
@@ -19,11 +19,9 @@ public class DBConnector {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
+
 	public Connection getConnection() {
 		return connection;
 	}
 
-	
 }

@@ -1,4 +1,4 @@
-package com.fredor.products.TestProject;
+package com.fredor.products.travel_agency;
 
 import java.sql.Date;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 public class User {
 
 	private int id;
+
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
@@ -13,27 +14,33 @@ public class User {
 	private String email;
 	private String password;
 	private List<Order> orders;
+	private Role role;
+
+
 	private String referer;
 	private double bonusAccount;
 
 	public User() {
 
 	}
-
-
-	public User(int id, String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
-			String password) {
-		this.id = id;
+ 
+	public User(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email,
+			String password, Role role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -83,7 +90,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 	public double getBonusAccount() {
 		return bonusAccount;
@@ -93,11 +99,19 @@ public class User {
 		this.bonusAccount = bonusAccount;
 	}
 	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public int getToursQty() {
 		int toursQty = 0;
 		for (Order order : orders) {
 			toursQty += toursQty + order.getTours().size();
-		}		
+		}
 		return toursQty;
 	}
 
